@@ -1,6 +1,8 @@
 ## AWS DevSecops CICDPipeline
 ![CICD](docs/secops.png)
 
+This project is cloned from [https://github.com/ravindrasinghh/Deploying-a-Bulletproof-Photo-Sharing-App-with-DevSecOps-Terraform-AWS-EKS-and-Chaos-Engineering]
+
 **Step 1:** 
 After successfully creating the infrastructure, add and install the Nginx Ingress Controller and repository using the following Helm commands:    
 ```
