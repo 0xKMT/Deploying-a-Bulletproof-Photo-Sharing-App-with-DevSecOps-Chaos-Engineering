@@ -23,3 +23,8 @@ variable "ecr_names" {
   type        = any
   description = "Names of the Elastic Container Registry repositories required for the deployment."
 }
+
+variable "s3_version" {
+  type = string
+  description = "version variable for s3 to against conflict duplicate"
+}

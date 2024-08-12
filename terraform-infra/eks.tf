@@ -104,80 +104,80 @@ resource "aws_eks_cluster" "cluster" {
 }
 
 
-resource "aws_eks_node_group" "private-nodes-01" {
-  cluster_name    = aws_eks_cluster.cluster.name
-  node_group_name = "private-nodes-01"
-  node_role_arn   = aws_iam_role.nodes.arn
-  version         = var.cluster_config.cluster_version
+# resource "aws_eks_node_group" "private-nodes-01" {
+#   cluster_name    = aws_eks_cluster.cluster.name
+#   node_group_name = "private-nodes-01"
+#   node_role_arn   = aws_iam_role.nodes.arn
+#   version         = var.cluster_config.cluster_version
 
-  subnet_ids = [
-    aws_subnet.private_ap_southeast_1a.id,
-    aws_subnet.private_ap_southeast_1b.id
-  ]
+#   subnet_ids = [
+#     aws_subnet.private_ap_southeast_1a.id,
+#     aws_subnet.private_ap_southeast_1b.id
+#   ]
 
-  capacity_type  = "SPOT"
-  instance_types = ["m5a.xlarge"]
+#   capacity_type  = "SPOT"
+#   instance_types = ["m5a.xlarge"]
 
-  scaling_config {
-    desired_size = 1
-    max_size     = 1
-    min_size     = 1
-  }
+#   scaling_config {
+#     desired_size = 1
+#     max_size     = 1
+#     min_size     = 1
+#   }
 
-  update_config {
-    max_unavailable = 1
-  }
-  labels = {
-    role = "general"
-  }
-  depends_on = [
-    aws_iam_role_policy_attachment.nodes-AmazonEKSWorkerNodePolicy,
-    aws_iam_role_policy_attachment.nodes-AmazonEKS_CNI_Policy,
-    aws_iam_role_policy_attachment.nodes-AmazonEC2ContainerRegistryReadOnly,
-  ]
-  tags = {
-    Name              = "${local.project}-${var.env}-eks"
-    "node_group_name" = "private-nodes-01"
-  }
-}
+#   update_config {
+#     max_unavailable = 1
+#   }
+#   labels = {
+#     role = "general"
+#   }
+#   depends_on = [
+#     aws_iam_role_policy_attachment.nodes-AmazonEKSWorkerNodePolicy,
+#     aws_iam_role_policy_attachment.nodes-AmazonEKS_CNI_Policy,
+#     aws_iam_role_policy_attachment.nodes-AmazonEC2ContainerRegistryReadOnly,
+#   ]
+#   tags = {
+#     Name              = "${local.project}-${var.env}-eks"
+#     "node_group_name" = "private-nodes-01"
+#   }
+# }
 
-resource "aws_eks_node_group" "private-nodes-02" {
-  cluster_name    = aws_eks_cluster.cluster.name
-  node_group_name = "private-nodes-02"
-  node_role_arn   = aws_iam_role.nodes.arn
-  version         = var.cluster_config.cluster_version
+# resource "aws_eks_node_group" "private-nodes-02" {
+#   cluster_name    = aws_eks_cluster.cluster.name
+#   node_group_name = "private-nodes-02"
+#   node_role_arn   = aws_iam_role.nodes.arn
+#   version         = var.cluster_config.cluster_version
 
-  subnet_ids = [
-    aws_subnet.private_ap_southeast_1a.id,
-    aws_subnet.private_ap_southeast_1b.id
-  ]
-  capacity_type  = "SPOT"
-  instance_types = ["m5a.xlarge"]
-  scaling_config {
-    desired_size = 1
-    max_size     = 1
-    min_size     = 1
-  }
+#   subnet_ids = [
+#     aws_subnet.private_ap_southeast_1a.id,
+#     aws_subnet.private_ap_southeast_1b.id
+#   ]
+#   capacity_type  = "SPOT"
+#   instance_types = ["m5a.xlarge"]
+#   scaling_config {
+#     desired_size = 1
+#     max_size     = 1
+#     min_size     = 1
+#   }
 
-  update_config {
-    max_unavailable = 1
-  }
+#   update_config {
+#     max_unavailable = 1
+#   }
 
-  labels = {
-    role = "general"
-  }
+#   labels = {
+#     role = "general"
+#   }
 
 
-  depends_on = [
-    aws_iam_role_policy_attachment.nodes-AmazonEKSWorkerNodePolicy,
-    aws_iam_role_policy_attachment.nodes-AmazonEKS_CNI_Policy,
-    aws_iam_role_policy_attachment.nodes-AmazonEC2ContainerRegistryReadOnly,
-  ]
-  tags = {
-    Name              = "${local.project}-${var.env}-eks"
-    "node_group_name" = "private-nodes-02"
-  }
-}
+#   depends_on = [
+#     aws_iam_role_policy_attachment.nodes-AmazonEKSWorkerNodePolicy,
+#     aws_iam_role_policy_attachment.nodes-AmazonEKS_CNI_Policy,
+#     aws_iam_role_policy_attachment.nodes-AmazonEC2ContainerRegistryReadOnly,
+#   ]
+#   tags = {
+#     Name              = "${local.project}-${var.env}-eks"
+#     "node_group_name" = "private-nodes-02"
+#   }
+# }
 
 resource "aws_iam_policy" "node_additional_permissions" {
   name        = "eks-node-additional-permissions"

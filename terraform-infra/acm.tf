@@ -14,21 +14,19 @@ module "acm_backend" {
 }
 
 data "aws_route53_zone" "main" {
-  name = "labs4aws.click" # Ensure the domain name ends with a dot
+  name = "labs4aws.click." # Ensure the domain name ends with a dot
 
 }
 
-# CloudFront supports ap southeast (Singapore) Region only.
 provider "aws" {
-  alias  = "ap-southeast-1"
-  region = "ap-southeast-1"
+  alias  = "us-east-1"
+  region = "us-east-1"
 }
-
 
 module "acm_cf" {
   source = "terraform-aws-modules/acm/aws"
   providers = {
-    aws = aws.ap-southeast-1
+    aws = aws.us-east-1
   }
   version     = "4.0.1"
   domain_name = "labs4aws.click"

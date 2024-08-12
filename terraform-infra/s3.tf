@@ -1,7 +1,7 @@
 module "ui" {
   source                  = "terraform-aws-modules/s3-bucket/aws"
   version                 = "3.3.0"
-  bucket                  = "${local.project}-${var.env}-photoapp-ui"
+  bucket                  = "${local.project}-${var.env}-photoapp-ui-${var.s3_version}"
   block_public_acls       = true
   block_public_policy     = true
   ignore_public_acls      = true
