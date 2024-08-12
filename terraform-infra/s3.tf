@@ -20,3 +20,23 @@ module "ui" {
   #tfsec:ignore:<check-id>
 
 }
+
+module "codedevops-staging-ui" {
+  source = "terraform-aws-modules/s3-bucket/aws"
+  version = "3.3.0"
+  bucket = "codedevops-staging-ui-${var.s3_version}"
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+  attach_policy           = true
+  policy                  = data.aws_iam_policy_document.codedevops_staging_ui_s3_policy.json
+
+  server_side_encryption_configuration = {
+    rule = {
+      apply_server_side_encryption_by_default = {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+}
