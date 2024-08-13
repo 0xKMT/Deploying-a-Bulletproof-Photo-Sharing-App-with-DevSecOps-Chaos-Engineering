@@ -3,43 +3,50 @@ name: 'Terraform and Security Scanning'
 on:
   workflow_dispatch:
     inputs:
-      terraform:
-        description: 'Run Terraform Job (yes/no)'
+      terraform-deploy:
+        description: 'Run Terraform Job to Deploy AWS Infra (yes/no)'
         required: true
         default: 'no'
       infrastructure-audit:
         description: 'Run Infrastructure Audit Job (yes/no)'
         required: true
         default: 'no'
+      terraform-destroy:
+        description: 'Run Terraform Job to Destroy AWS Infra (yes/no)'
+        required: false
+        default: 'no'
+      
         
 permissions:
   id-token: write
   contents: read 
 env: 
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION: ap-southeast-1
   TF_VERSION: 1.2.6   
 
 jobs:
-  terraform:
-    name: infrastructure-dev
+  terraform-deploy:
+    name: infrastructure-lab
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.terraform == 'yes' }}
+    if: ${{ github.event.inputs.terraform-deploy == 'yes' }}
     defaults:
       run:
         shell: bash
 
     steps:
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-region: ${{ env.AWS_REGION }}
-        role-to-assume: arn:aws:iam::434605749312:role/aws-deployment-tf
-        role-session-name: staging-session    
+    # - name: Configure AWS Credentials
+    #   uses: aws-actions/configure-aws-credentials@v1
+    #   with:
+    #     aws-region: ${{ env.AWS_REGION }}
+    #     role-to-assume: arn:aws:iam::434605749312:role/aws-deployment-tf
+    #     role-session-name: staging-session    
     - name: Checkout
       uses: actions/checkout@v3
       
     - name: Setup terraform
-      uses: hashicorp/setup-terraform@v1
+      uses: hashicorp/setup-terraform@v2
       with:
         terraform_version: ${{ env.TF_VERSION }} 
           
@@ -93,4 +100,31 @@ jobs:
         checkov -d . --framework terraform --download-external-modules true
       working-directory: terraform-infra 
       continue-on-error: true
+  
+  terraform-destroy:
+    name: infrastructure-lab-destroy
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.terraform-destroy == 'yes' }}
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    # - name: Configure AWS Credentials
+    #   uses: aws-actions/configure-aws-credentials@v1
+    #   with:
+    #     aws-region: ${{ env.AWS_REGION }}
+    #     role-to-assume: arn:aws:iam::434605749312:role/aws-deployment-tf
+    #     role-session-name: staging-session    
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: Setup terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: ${{ env.TF_VERSION }} 
+    
+    - name: Terraform Destroy
+      run: terraform destroy --auto-approve --var-file=dev.terraform.tfvars
+      working-directory: terraform-infra
       
