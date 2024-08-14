@@ -5,15 +5,15 @@ on:
     inputs:
       terraform-deploy:
         description: 'Run Terraform Job to Deploy AWS Infra (yes/no)'
-        required: false
+        required: true
         default: 'no'
       infrastructure-audit:
         description: 'Run Infrastructure Audit Job (yes/no)'
-        required: false
+        required: true
         default: 'no'
       terraform-destroy:
         description: 'Run Terraform Job to Destroy AWS Infra (yes/no)'
-        required: false
+        required: true
         default: 'no'
       
         
@@ -126,6 +126,9 @@ jobs:
         terraform_version: ${{ env.TF_VERSION }} 
     
     - name: Terraform Destroy
-      run: terraform destroy --auto-approve --var-file=dev.terraform.tfvars
+      run: |
+        ls -la
+        terraform init
+        terraform destroy --auto-approve --var-file=dev.terraform.tfvars
       working-directory: terraform-infra
       
