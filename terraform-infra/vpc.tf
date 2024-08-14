@@ -19,9 +19,9 @@ resource "aws_internet_gateway" "igw" {
 }
 
 resource "aws_eip" "nat" {
-  domain           = "vpc"
+  domain = "vpc"
   tags = {
-    Name = "${local.project}-${var.env}-eip"
+    Name        = "${local.project}-${var.env}-eip"
     environment = "${var.env}"
   }
 }
@@ -30,7 +30,7 @@ resource "aws_nat_gateway" "nat" {
   allocation_id = aws_eip.nat.id
   subnet_id     = aws_subnet.public_ap_southeast_1a.id
   tags = {
-    Name = "${local.project}-${var.env}-nat"
+    Name        = "${local.project}-${var.env}-nat"
     environment = "${var.env}"
   }
   depends_on = [aws_internet_gateway.igw]
@@ -44,7 +44,7 @@ resource "aws_subnet" "private_ap_southeast_1a" {
     "Name"                                                     = "${local.project}-${var.env}-private-ap-southeast-1a"
     "kubernetes.io/role/internal-elb"                          = "1"
     "kubernetes.io/cluster/${var.cluster_config.cluster_name}" = "owned"
-    "environment" = "${var.env}"
+    "environment"                                              = "${var.env}"
   }
 }
 
@@ -56,7 +56,7 @@ resource "aws_subnet" "private_ap_southeast_1b" {
     "Name"                                                     = "${local.project}-${var.env}-private-ap-southeast-1b"
     "kubernetes.io/role/internal-elb"                          = "1"
     "kubernetes.io/cluster/${var.cluster_config.cluster_name}" = "owned"
-    "environment" = "${var.env}"
+    "environment"                                              = "${var.env}"
   }
 }
 
@@ -69,7 +69,7 @@ resource "aws_subnet" "public_ap_southeast_1a" {
     "Name"                                                     = "${local.project}-${var.env}-public-ap-southeast-1a"
     "kubernetes.io/role/elb"                                   = "1"
     "kubernetes.io/cluster/${var.cluster_config.cluster_name}" = "owned"
-    "environment" = "${var.env}"
+    "environment"                                              = "${var.env}"
   }
 }
 
@@ -83,7 +83,7 @@ resource "aws_subnet" "public_ap_southeast_1b" {
     "Name"                                                     = "${local.project}-${var.env}-public-ap-southeast-1b"
     "kubernetes.io/role/elb"                                   = "1"
     "kubernetes.io/cluster/${var.cluster_config.cluster_name}" = "owned"
-    "environment" = "${var.env}"
+    "environment"                                              = "${var.env}"
   }
 }
 
@@ -94,7 +94,7 @@ resource "aws_route_table" "private" {
     nat_gateway_id = aws_nat_gateway.nat.id
   }
   tags = {
-    Name = "${local.project}-${var.env}-private"
+    Name        = "${local.project}-${var.env}-private"
     environment = "${var.env}"
   }
 }
@@ -106,7 +106,7 @@ resource "aws_route_table" "public" {
     gateway_id = aws_internet_gateway.igw.id
   }
   tags = {
-    Name = "${local.project}-${var.env}-public"
+    Name        = "${local.project}-${var.env}-public"
     environment = "${var.env}"
   }
 }

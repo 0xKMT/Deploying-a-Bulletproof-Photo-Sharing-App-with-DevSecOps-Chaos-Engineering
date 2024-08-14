@@ -22,9 +22,9 @@ module "ui" {
 }
 
 module "codedevops-staging-ui" {
-  source = "terraform-aws-modules/s3-bucket/aws"
-  version = "3.3.0"
-  bucket = "codedevops-staging-ui-${var.s3_version}"
+  source                  = "terraform-aws-modules/s3-bucket/aws"
+  version                 = "3.3.0"
+  bucket                  = "codedevops-staging-ui-${var.s3_version}"
   block_public_acls       = true
   block_public_policy     = true
   ignore_public_acls      = true

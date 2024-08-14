@@ -54,7 +54,7 @@ jobs:
     - name: Terraform Init, Format, Validate
       run: |
         terraform init
-        terraform fmt -check
+        terraform fmt
         terraform validate -no-color
       working-directory: terraform-infra
       

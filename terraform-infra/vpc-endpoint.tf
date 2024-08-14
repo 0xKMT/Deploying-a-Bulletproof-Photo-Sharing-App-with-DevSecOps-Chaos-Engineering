@@ -1,6 +1,6 @@
 resource "aws_vpc_endpoint" "ssm" {
-  vpc_id = aws_vpc.vpc.id
-  service_name = var.ssm_endpoint_service_name
+  vpc_id            = aws_vpc.vpc.id
+  service_name      = var.ssm_endpoint_service_name
   vpc_endpoint_type = "Interface"
   tags = {
     Name        = "${local.project}-${var.env}-vpce"
@@ -8,7 +8,7 @@ resource "aws_vpc_endpoint" "ssm" {
   }
 
   subnet_ids = [
-    aws_subnet.private_ap_southeast_1a.id, 
+    aws_subnet.private_ap_southeast_1a.id,
     aws_subnet.private_ap_southeast_1b.id
   ]
 
@@ -24,23 +24,23 @@ resource "aws_vpc_endpoint_private_dns" "ssm" {
 }
 
 resource "aws_vpc_endpoint" "ssm-messages" {
-  vpc_id = aws_vpc.vpc.id
-  service_name = var.ssm_messages_endpoint_service_name
+  vpc_id            = aws_vpc.vpc.id
+  service_name      = var.ssm_messages_endpoint_service_name
   vpc_endpoint_type = "Interface"
-    tags = {
+  tags = {
     Name        = "${local.project}-${var.env}-vpce"
     environment = "${var.env}"
   }
 
   subnet_ids = [
-    aws_subnet.private_ap_southeast_1a.id, 
+    aws_subnet.private_ap_southeast_1a.id,
     aws_subnet.private_ap_southeast_1b.id
   ]
 
   security_group_ids = [
     aws_security_group.vpc_endpoint.id
   ]
-    
+
 }
 
 resource "aws_vpc_endpoint_private_dns" "ssm-messages" {
@@ -49,8 +49,8 @@ resource "aws_vpc_endpoint_private_dns" "ssm-messages" {
 }
 
 resource "aws_vpc_endpoint" "ec2-messages" {
-  vpc_id = aws_vpc.vpc.id
-  service_name = var.ec2_messages_endpoint_service_name
+  vpc_id            = aws_vpc.vpc.id
+  service_name      = var.ec2_messages_endpoint_service_name
   vpc_endpoint_type = "Interface"
   tags = {
     Name        = "${local.project}-${var.env}-vpce"
@@ -58,14 +58,14 @@ resource "aws_vpc_endpoint" "ec2-messages" {
   }
 
   subnet_ids = [
-    aws_subnet.private_ap_southeast_1a.id, 
+    aws_subnet.private_ap_southeast_1a.id,
     aws_subnet.private_ap_southeast_1b.id
   ]
 
   security_group_ids = [
     aws_security_group.vpc_endpoint.id
   ]
-    
+
 }
 
 resource "aws_vpc_endpoint_private_dns" "ec2-messages" {

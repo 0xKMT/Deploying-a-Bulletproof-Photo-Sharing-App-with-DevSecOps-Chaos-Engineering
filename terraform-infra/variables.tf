@@ -25,21 +25,21 @@ variable "ecr_names" {
 }
 
 variable "s3_version" {
-  type = string
+  type        = string
   description = "version variable for s3 to against conflict duplicate"
 }
 
 variable "ssm_endpoint_service_name" {
-  type = string
+  type        = string
   description = "service name for vpc endpoint"
 }
 
 variable "ssm_messages_endpoint_service_name" {
-  type = string
+  type        = string
   description = "service name for vpc endpoint"
 }
 
 variable "ec2_messages_endpoint_service_name" {
-  type = string
+  type        = string
   description = "service name for vpc endpoint"
 }

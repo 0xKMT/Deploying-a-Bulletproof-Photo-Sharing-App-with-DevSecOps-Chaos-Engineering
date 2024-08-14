@@ -19,7 +19,7 @@ data "aws_iam_policy_document" "codedevops_staging_ui_s3_policy" {
     resources = ["${module.codedevops-staging-ui.s3_bucket_arn}/*"]
 
     principals {
-      type        = "Service"
+      type = "Service"
       identifiers = [
         "ec2.amazonaws.com"
       ]
