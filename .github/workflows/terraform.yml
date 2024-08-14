@@ -53,6 +53,7 @@ jobs:
 
     - name: Terraform Init, Format, Validate
       run: |
+        ls -la
         terraform init
         terraform fmt
         terraform validate -no-color
