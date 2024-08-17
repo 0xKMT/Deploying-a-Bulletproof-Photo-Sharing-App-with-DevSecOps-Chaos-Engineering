@@ -1,3 +1,3 @@
 locals {
-  project = "devsecops-bulletproof-photo-app"
+  project = "devsecops-bulletproof"
 }

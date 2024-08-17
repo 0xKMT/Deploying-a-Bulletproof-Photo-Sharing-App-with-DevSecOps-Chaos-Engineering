@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: myapp-config
 data:
-  S3_BUCKET: "codedevops-staging-photoapp-ui"
+  S3_BUCKET: "devsecops-bulletproof-lab-photoapp-ui"
   CLOUDFRONT_DOMAIN: "sharecodedevops.labs4aws.click"
 ---
 apiVersion: apps/v1

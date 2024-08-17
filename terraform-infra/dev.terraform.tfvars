@@ -1,8 +1,6 @@
 # Basic Environment Settings
 env = "lab"
 
-s3_version = "v5"
-
 ssm_endpoint_service_name = "com.amazonaws.ap-southeast-1.ssm"
 
 ssm_messages_endpoint_service_name = "com.amazonaws.ap-southeast-1.ssmmessages"

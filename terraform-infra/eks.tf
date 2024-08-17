@@ -225,7 +225,7 @@ resource "aws_iam_policy" "node_additional_permissions" {
         Effect = "Allow"
         Action = "s3:PutObject"
         Resource = [
-          "arn:aws:s3:::codedevops-staging-ui-*/*"
+          "arn:aws:s3:::devsecops-bulletproof-lab-photoapp-ui/*"
         ]
       }
     ]

@@ -58,7 +58,7 @@ ROLE_DEF="- rolearn: arn:aws:iam::${ACCOUNT_ID}:role/${ROLE_NAME}
     - system:masters"
 
 # Get the current aws-auth ConfigMap and save it
-TMP_FILE="/tmp/aws-auth.yml"
+TMP_FILE="./iam-policies/aws-auth.yml"
 kubectl get configmap aws-auth -n kube-system -o yaml > $TMP_FILE
 
 # Check if the role already exists in the ConfigMap
