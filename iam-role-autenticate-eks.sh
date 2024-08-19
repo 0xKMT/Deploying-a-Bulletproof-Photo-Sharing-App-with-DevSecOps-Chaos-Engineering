@@ -58,12 +58,12 @@ ROLE_DEF="- rolearn: arn:aws:iam::${ACCOUNT_ID}:role/${ROLE_NAME}
     - system:masters"
 
 # Get the current aws-auth ConfigMap and save it
-TMP_FILE="./iam-policies/aws-auth.yml"
+TMP_FILE="/tmp/aws-auth.yml"
 kubectl get configmap aws-auth -n kube-system -o yaml > $TMP_FILE
 
 # Check if the role already exists in the ConfigMap
 if ! grep -q "$ROLE_NAME" $TMP_FILE; then
-    echo "Modifying aws-auth ConfigMap to add new role..."
+    echo "Modifying aws-auth ConfigMap to add new role..."s
     # Use yq to update the YAML file safely
     yq e '.data.mapRoles += "'"$ROLE_DEF"'"' -i $TMP_FILE
     # Add last-applied-configuration annotation using current content
