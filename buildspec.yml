@@ -14,7 +14,7 @@ phases:
       - unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
       - export PATH=$SONAR_SCANNER_HOME/bin:$PATH
       - export SONAR_SCANNER_OPTS="-server"
-      - sonar-scanner -Dsonar.organization=0xKMT -Dsonar.projectKey=0xKMT_Deploying-a-Bulletproof-Photo-Sharing-App-with-DevSecOps-Chaos-Engineering -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io    
+      - sonar-scanner -Dsonar.organization=0xkmt-devops-cloud -Dsonar.projectKey=0xKMT_Deploying-a-Bulletproof-Photo-Sharing-App-with-DevSecOps-Chaos-Engineering -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io    
       - echo "Installing GitLeaks..."
       - wget https://github.com/zricethezav/gitleaks/releases/download/v8.0.0/gitleaks_8.0.0_linux_x64.tar.gz
       - tar -xzf gitleaks_8.0.0_linux_x64.tar.gz
