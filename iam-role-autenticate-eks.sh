@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 # Dynamically fetch the AWS Account ID
 ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
