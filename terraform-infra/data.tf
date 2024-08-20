@@ -13,17 +13,3 @@ data "aws_iam_policy_document" "s3_policy" {
   }
 }
 
-# data "aws_iam_policy_document" "codedevops_staging_ui_s3_policy" {
-#   statement {
-#     actions   = ["s3:PutObject"]
-#     resources = ["${module.codedevops-staging-ui.s3_bucket_arn}/*"]
-
-#     principals {
-#       type = "Service"
-#       identifiers = [
-#         "ec2.amazonaws.com"
-#       ]
-#     }
-#   }
-# }
-

@@ -18,11 +18,6 @@ data "aws_route53_zone" "main" {
 
 }
 
-provider "aws" {
-  alias  = "us-east-1"
-  region = "us-east-1"
-}
-
 module "acm_cf" {
   source = "terraform-aws-modules/acm/aws"
   providers = {

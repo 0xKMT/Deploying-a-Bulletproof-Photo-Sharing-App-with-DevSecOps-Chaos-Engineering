@@ -1,6 +1,17 @@
 provider "aws" {
-  alias               = "aws-pkmtri"
   region              = "ap-southeast-1"
+  allowed_account_ids = [841135272578]
+  default_tags {
+    tags = {
+      environment = var.env
+      managedby   = "terraform"
+    }
+  }
+}
+
+provider "aws" {
+  alias               = "us-east-1"
+  region              = "us-east-1"
   allowed_account_ids = [841135272578]
   default_tags {
     tags = {
