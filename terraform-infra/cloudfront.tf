@@ -2,7 +2,7 @@ module "ui-cf" {
   source                        = "terraform-aws-modules/cloudfront/aws"
   version                       = "3.4.0"
   comment                       = "Created from terraform"
-  aliases                       = ["sharecodedevops.labs4aws.click", "downloadcodedevops.labs4aws.click"]
+  aliases                       = ["sharecodedevops.labs4aws.click"]
   create_distribution           = true
   enabled                       = true
   is_ipv6_enabled               = true
