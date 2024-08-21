@@ -17,7 +17,7 @@ S3_BUCKET = os.getenv('S3_BUCKET', 'default-bucket')
 CLOUDFRONT_DOMAIN = os.getenv('CLOUDFRONT_DOMAIN', 'default.cloudfront.net')
 
 # AWS DynamoDB
-dynamodb = boto3.resource('dynamodb', region_name='ap-south-1')
+dynamodb = boto3.resource('dynamodb', region_name='ap-southeast-1')
 table = dynamodb.Table('PhotosMetadata')
 
 @app.route('/')
