@@ -73,6 +73,7 @@ metadata:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
     alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:ap-southeast-1:841135272578:certificate/5c06971b-4975-4458-bfda-5c3d94a7bddd"
     alb.ingress.kubernetes.io/ssl-redirect: '443'
+    nginx.org/client-max-body-size: "5m"
 spec:
 
   rules:
