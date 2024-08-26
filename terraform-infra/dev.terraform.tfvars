@@ -1,5 +1,5 @@
 # Basic Environment Settings
-env = "lab"
+env = "dev"
 
 ssm_endpoint_service_name = "com.amazonaws.ap-southeast-1.ssm"
 

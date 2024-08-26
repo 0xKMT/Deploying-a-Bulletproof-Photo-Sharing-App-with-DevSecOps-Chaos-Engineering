@@ -46,3 +46,9 @@ resource "aws_wafv2_web_acl" "main_acl" {
     Name = "${var.env}-WebACL"
   }
 }
+
+resource "aws_wafv2_web_acl_association" "ui-cf" {
+  resource_arn = module.ui-cf.cloudfront_distribution_arn
+  web_acl_arn  = aws_wafv2_web_acl.main_acl.arn
+  depends_on = [ aws_wafv2_web_acl.main_acl, module.ui-cf ]
+}

@@ -13,3 +13,7 @@ data "aws_iam_policy_document" "s3_policy" {
   }
 }
 
+resource "aws_route53_zone" "primary" {
+  name = "labs4aws.click"
+}
+

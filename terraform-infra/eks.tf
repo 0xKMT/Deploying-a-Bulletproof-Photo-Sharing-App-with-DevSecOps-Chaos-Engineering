@@ -117,11 +117,11 @@ resource "aws_eks_node_group" "private-nodes-01" {
   ]
 
   capacity_type  = "SPOT"
-  instance_types = ["m5a.xlarge"]
+  instance_types = ["t2.large"]
 
   scaling_config {
     desired_size = 1
-    max_size     = 1
+    max_size     = 2
     min_size     = 1
   }
 
@@ -157,10 +157,10 @@ resource "aws_eks_node_group" "private-nodes-02" {
     aws_subnet.private_ap_southeast_1b.id
   ]
   capacity_type  = "SPOT"
-  instance_types = ["m5a.xlarge"]
+  instance_types = ["t2.large"]
   scaling_config {
     desired_size = 1
-    max_size     = 1
+    max_size     = 2
     min_size     = 1
   }
 
@@ -225,7 +225,7 @@ resource "aws_iam_policy" "node_additional_permissions" {
         Effect = "Allow"
         Action = "s3:PutObject"
         Resource = [
-          "arn:aws:s3:::devsecops-bulletproof-lab-photoapp-ui/*"
+          "arn:aws:s3:::devsecops-bulletproof-dev-photoapp-ui/*"
         ]
       }
     ]
